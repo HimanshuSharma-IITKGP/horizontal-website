@@ -1,34 +1,58 @@
 import React, { useState, useEffect } from "react";
 import classes from "./Box.module.css";
+import stillImage from '../images/Still.png'
+
+const LeftAnimation = () => {
+  return (
+    <iframe src="https://giphy.com/embed/3ohryBhY2sPTWOW9PO" style={{
+        width: "100%",
+        height: "100%",
+        position: "absolute",
+        frameBorder: "0",
+      }} 
+      title = 'animation-left'
+      className="giphy-embed" 
+      allowFullScreen></iframe>
+  )
+}
+
+const RightAnimation = () => {
+
+  return (
+    <iframe
+      src="https://giphy.com/embed/xTiTnlivzgGUGVwcLu"
+      style={{
+        width: "100%",
+        height: "100%",
+        position: "absolute",
+        frameBorder: "0",
+      }}
+      className="giphy-embed"
+      allowFullScreen
+      title="running animation"
+    ></iframe>
+  );
+}
 
 const Box = () => {
+  
+  // console.log(animationBox)
   const [pos, setPos] = useState(0);
   const [keyCode, setKeyCode] = useState();
   const [boyPos, setBoyPos] = useState(600);
 
-  const boyClasses =
-    keyCode === 37
-      ? `left-animation`
-      : keyCode === 39
-      ? `right-animation`
-      : "animation-box";
-  const spinnerClasses =
-    keyCode === 37
-      ? `boy-animation-left`
-      : keyCode === 39
-      ? `boy-animation-right`
-      : `animation-spinner`;
+
+
   const change = 10;
 
-  console.log(boyClasses, spinnerClasses);
+  // console.log(boyClasses, spinnerClasses);
   useEffect(() => {
     const onKeyDown = (event) => {
-      console.log(event);
+      // console.log(event);
       setKeyCode(event.keyCode);
 
       // right arrow
       if (event.keyCode === 39) {
-        console.log(event.key);
 
         setPos((prev) => {
           return prev - change;
@@ -68,7 +92,7 @@ const Box = () => {
 
     return () => {
       document.removeEventListener("keydown", onKeyDown);
-      // document.removeEventListener("keyup", onKeyUp);
+      document.removeEventListener("keyup", onKeyUp);
     };
   }, []);
 
@@ -85,12 +109,15 @@ const Box = () => {
         Content
       </div>
 
-      <div className={classes[boyClasses]} style={boyStyle}>
-        <div className={classes[spinnerClasses]}></div>
+      <div className={classes['animation-box']} style={boyStyle} id='animation-box'>
+        {keyCode !== 39 && keyCode !== 37 && <img src={stillImage} alt='still' width='100px' height='100px' />}
+        {keyCode === 39 && <RightAnimation className={classes['right-animation']}  style={{'z-index': '2'}} />}
+        {keyCode === 37 && <LeftAnimation className={classes['left-animation']}  style={{'z-index': '2'}} />}
       </div>
     </div>
   );
 };
+
 
 export default Box;
 

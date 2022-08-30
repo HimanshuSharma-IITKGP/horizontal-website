@@ -14,15 +14,23 @@
 }
 
 .animation-box {
-  width: 20px;
-  height: 80px;
-  /* border: 10px; */
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: blue;
   position: relative;
   left: 600px;
-  transition: all 1s linear;
+  transition: all 0.5s linear;
 }
 
+.right-animation{
+  z-index: 3;
+} 
+.left-animation{
+  z-index: 3;
+}
 .animation-spinner {
   width: 20px;
   height: 20px;
@@ -32,99 +40,12 @@
 
 
 
-.left-animation {
-  width: 20px;
-  height: 80px;
-  /* border: 10px; */
-  background-color: teal;
-  position: relative;
-  left: 600px;
-  transition: all 1s linear;
 
 
 
-  animation-name: animate-boy-left;
-  animation-duration: 0.7s;
-  animation-timing-function: linear;
-  animation-fill-mode: forwards;
-}
-
-.right-animation {
-  width: 20px;
-  height: 80px;
-  /* border: 10px; */
-  background-color: blueviolet;
-  position: relative;
-  left: 600px;
-  transition: all 1s linear;
-
-
-  animation-name: animate-boy-right;
-  animation-duration: 0.7s;
-  animation-timing-function: linear;
-  animation-fill-mode: forwards;
-}
-
-.boy-animation-left {
-
-  width: 20px;
-  height: 20px;
-  background-color: yellowgreen;
-  transition: all 1 linear;
-  background-color: red;
 
 
 
-  animation-name: up-down;
-  animation-duration: 0.7s;
-  animation-direction: alternate;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-}
-
-.boy-animation-right {
-  width: 20px;
-  height: 20px;
-  background-color: yellowgreen;
-  transition: all 1 linear;
-  background-color: red;
-
-
-  animation-name: up-down;
-  animation-duration: 0.7s;
-  animation-direction: alternate;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-}
-
-@keyframes up-down {
-  0% {
-    transform: translateY(0);
-  }
-
-  100% {
-    transform: translateY(60px);
-  }
-}
 
 
 
-@keyframes animate-boy-left {
-  0% {
-    transform: rotateZ(0);
-  }
-
-  100% {
-    transform: rotateZ(-45deg);
-  }
-}
-
-@keyframes animate-boy-right {
-  0% {
-    transform: rotateZ(0);
-  }
-
-  100% {
-    transform: rotateZ(45deg);
-  }
-}

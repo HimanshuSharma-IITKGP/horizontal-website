@@ -1,12 +1,10 @@
-import {useEffect }from 'react'
+import { useEffect } from "react";
 import Box from "./components/Box";
 
 function App() {
-
-
   return (
     <div>
-      <Box/> 
+      <Box />
     </div>
   );
 }
