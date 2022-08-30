@@ -1,38 +1,47 @@
 import React, { useState, useEffect } from "react";
 import classes from "./Box.module.css";
-import stillImage from '../images/Still.png'
+import stillRightImage from '../images/Still-right.png'
+import stillLeftImage from '../images/Still-left.png'
+import rightAnimationGIF from '../images/boy-running-right.gif'
+import leftAnimationGIF from '../images/boy-running-left.gif'
 
+let stillImage = stillRightImage ;
 const LeftAnimation = () => {
   return (
-    <iframe src="https://giphy.com/embed/3ohryBhY2sPTWOW9PO" style={{
-        width: "100%",
-        height: "100%",
-        position: "absolute",
-        frameBorder: "0",
-      }} 
-      title = 'animation-left'
-      className="giphy-embed" 
-      allowFullScreen></iframe>
-  )
-}
-
-const RightAnimation = () => {
-
-  return (
-    <iframe
-      src="https://giphy.com/embed/xTiTnlivzgGUGVwcLu"
+    <img
+      src={leftAnimationGIF}
       style={{
         width: "100%",
         height: "100%",
         position: "absolute",
         frameBorder: "0",
       }}
-      className="giphy-embed"
       allowFullScreen
       title="running animation"
-    ></iframe>
+      alt="boy running left"
+    />
   );
 }
+
+const RightAnimation = () => {
+
+  return (
+    <img
+      src={rightAnimationGIF}
+      style={{
+        width: "100%",
+        height: "100%",
+        position: "absolute",
+        frameBorder: "0",
+      }}
+      allowFullScreen
+      title="running animation"
+      alt="boy running right"
+    />
+  );
+}
+
+
 
 const Box = () => {
   
@@ -67,7 +76,7 @@ const Box = () => {
       }
       //left arrow
       else if (event.keyCode === 37) {
-        console.log(event.key);
+        // console.log(event.key);
         setPos((prev) => {
           return prev + change;
         });
@@ -81,7 +90,16 @@ const Box = () => {
       }
     };
 
-    const onKeyUp = () => {
+    const onKeyUp = (event) => {
+      // console.log(event)
+      console.log('key up')
+      if(event.keyCode === 37){
+        console.log('left up')
+        stillImage = stillLeftImage;
+      }else if(event.keyCode === 39){
+        console.log('right up')
+        stillImage = stillRightImage;
+      }
       setTimeout(() => {
         setKeyCode(null);
         setBoyPos(600)
@@ -109,10 +127,20 @@ const Box = () => {
         Content
       </div>
 
-      <div className={classes['animation-box']} style={boyStyle} id='animation-box'>
-        {keyCode !== 39 && keyCode !== 37 && <img src={stillImage} alt='still' width='100px' height='100px' />}
-        {keyCode === 39 && <RightAnimation className={classes['right-animation']}  style={{'z-index': '2'}} />}
-        {keyCode === 37 && <LeftAnimation className={classes['left-animation']}  style={{'z-index': '2'}} />}
+      <div
+        className={classes["animation-box"]}
+        style={boyStyle}
+        id="animation-box"
+      >
+        {keyCode !== 39 && keyCode !== 37 && (
+          <img src={stillImage} alt="still" width="100px" height="100px" />
+        )}
+        {keyCode === 39 && (
+          <RightAnimation className={classes["right-animation"]} />
+        )}
+        {keyCode === 37 && (
+          <LeftAnimation className={classes["left-animation"]} />
+        )}
       </div>
     </div>
   );

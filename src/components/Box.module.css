@@ -19,7 +19,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: blue;
+  background-color: black;
   position: relative;
   left: 600px;
   transition: all 0.5s linear;
@@ -31,12 +31,8 @@
 .left-animation{
   z-index: 3;
 }
-.animation-spinner {
-  width: 20px;
-  height: 20px;
-  background-color: yellowgreen;
-  transition: all 1 linear;
-}
+
+
 
 
 
